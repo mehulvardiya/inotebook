@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = "mongodb://localhost:27017/?directConnection=true"; // Use your MongoDB URI
+const mongoURI = "mongodb://localhost:27017/inotebook?directConnection=true"; // Use your MongoDB URI
 
 const connectToMongo = async () => {
     try {
