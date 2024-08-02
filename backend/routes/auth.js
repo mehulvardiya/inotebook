@@ -4,7 +4,7 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs"); //npm install bcryptjs
 var jwt = require("jsonwebtoken"); //npm install jsonwebtoken
-var fetchuser=require("../middleware/fetchuser");
+var fetchuser = require("../middleware/fetchuser");
 
 const JWT_SECRET = "Mehulisgood";
 
@@ -47,14 +47,13 @@ router.post(
 
       //data change into token "jsonwebtoken"
       const data = {
-        user:{
-          id: user.id
-        }
-       
+        user: {
+          id: user.id,
+        },
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
 
-      res.json({authtoken});
+      res.json({ authtoken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
@@ -107,11 +106,11 @@ router.post(
 );
 
 //ROUTE 3-- Get loggedin User Details using: POST "/api/auth/getuser". No login required
-router.post('/getuser', fetchuser,  async (req, res) => {
+router.post("/getuser", fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;
-    const user = await User.findById(userId).select("-password")
-    res.send(user)
+    const user = await User.findById(userId).select("-password");
+    res.send(user);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
