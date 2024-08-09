@@ -5,7 +5,6 @@ const Navbar = () => {
   //It use for active highlight navbar
   let location = useLocation();
 
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
