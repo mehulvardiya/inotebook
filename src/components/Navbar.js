@@ -57,9 +57,12 @@ const Navbar = () => {
               <button className="btn btn-primary mx-2" type="submit">
                 Search
               </button> */}
-              <Link className="btn btn-primary" to="/signup" role="button">Signup</Link>
-              <Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-              
+              <Link className="btn btn-primary" to="/signup" role="button">
+                Signup
+              </Link>
+              <Link className="btn btn-primary mx-2" to="/login" role="button">
+                Login
+              </Link>
             </form>
           </div>
         </div>

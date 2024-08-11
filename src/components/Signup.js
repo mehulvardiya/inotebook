@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -13,26 +13,27 @@ const Signup = () => {
   const host = "http://localhost:5000";
   const handleSubmit = async (e) => {
     e.preventDefault();
-      const response = await fetch(`${host}/api/auth/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: credentials.name,
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      });
-      const json = await response.json();
-      console.log(json);
-      if (json.success) {
-        // Save the auth token and redirect
-        localStorage.setItem("token", json.authtoken);
-        navigate("/");
-      } else {
-        alert("Invalid credentials. Please try again.");
-      }
+    const response = await fetch(`${host}/api/auth/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      // Save the auth token and redirect
+      localStorage.setItem("token", json.authtoken);
+      navigate("/");
+      props.showAlert("Account Created Successfully.", "success");
+    } else {
+      props.showAlert("Invalid credentials. Please try again.", "danger");
+    }
   };
 
   const onChange = (e) => {
