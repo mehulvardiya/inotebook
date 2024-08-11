@@ -8,13 +8,11 @@ const Signup = () => {
     password: "",
     cpassword: "",
   });
-  const [error, setError] = useState(null);
   let navigate = useNavigate();
 
   const host = "http://localhost:5000";
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
       const response = await fetch(`${host}/api/auth/createuser`, {
         method: "POST",
         headers: {
@@ -33,12 +31,8 @@ const Signup = () => {
         localStorage.setItem("token", json.authtoken);
         navigate("/");
       } else {
-        setError("Invalid credentials. Please try again.");
+        alert("Invalid credentials. Please try again.");
       }
-    } catch (err) {
-      console.error("Error during login:", err);
-      setError("Something went wrong. Please try again later.");
-    }
   };
 
   const onChange = (e) => {
@@ -107,7 +101,6 @@ const Signup = () => {
             required
           />
         </div>
-        {error && <div className="alert alert-danger">{error}</div>}
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

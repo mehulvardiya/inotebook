@@ -3,13 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null);
   let navigate = useNavigate();
 
   const host = "http://localhost:5000";
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
       const response = await fetch(`${host}/api/auth/login`, {
         method: "POST",
         headers: {
@@ -27,12 +25,8 @@ const Login = () => {
         localStorage.setItem("token", json.authtoken);
         navigate("/");
       } else {
-        setError("Invalid credentials. Please try again.");
+        alert("Invalid credentials. Please try again.");
       }
-    } catch (err) {
-      console.error("Error during login:", err);
-      setError("Something went wrong. Please try again later.");
-    }
   };
 
   const onChange = (e) => {
@@ -72,7 +66,6 @@ const Login = () => {
             onChange={onChange}
           />
         </div>
-        {error && <div className="alert alert-danger">{error}</div>}
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
