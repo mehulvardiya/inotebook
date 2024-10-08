@@ -3,10 +3,10 @@ import { Link, useLocation,useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let navigate = useNavigate();
-  const handlelogout=()=>{
-    localStorage.removeItem('token')
-    navigate('/login')
-  }
+    const handlelogout=()=>{
+      localStorage.removeItem('token')
+      navigate('/login')
+    }
   //It use for active highlight navbar
   let location = useLocation();
 
